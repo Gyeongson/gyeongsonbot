@@ -1,0 +1,5 @@
+.pylintrc
+.vscode
+Cogs/__pycache__
+lib/__pycache__
+config.py
