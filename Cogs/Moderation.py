@@ -73,7 +73,7 @@ class ModCommand(commands.Cog):
     @commands.command(name="차단")
     @commands.has_guild_permissions(ban_members=True)
     @commands.bot_has_guild_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, reason: typing.Optional[str] = "사유 없음.", *, delete: typing.Optional[int] = 0):
+    async def ban(self, ctx, member: discord.Member, reason: typing.Optional[str] = "사유 없음."):
         """
         경손아 차단 < 유저 > [ 사유 ]
 
@@ -86,7 +86,7 @@ class ModCommand(commands.Cog):
                 await ctx.send(f"{member} 님은 관리자 권한을 소유중이여 차단이 불가능해요.")
             else:
                 await member.send(f"{ctx.guild.name} 에서 차단되었어요.\n\n사유: {reason}\n\n관리자: {ctx.author}")
-                await ctx.guild.ban(member, reason=reason, delete_message_days=delete)
+                await ctx.guild.ban(member, reason=reason)
                 await ctx.send(f"{member} 님을 차단했어요.\n\n사유: {reason}")
         else:
             await ctx.send(f"봇의 권한이 {member.name} 님보다 낮아 차단할 수 없어요.")
