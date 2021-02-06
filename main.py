@@ -6,20 +6,17 @@ from lib import config
 client = discord.Client()
 koreanbots = koreanbots.Client(client, config.koreanbotstoken)
 
-intents = discord.Intents(
+intents_list = discord.Intents(
     guilds=True,
     members=True,
     bans=True,
-    emojis=True,
     integrations=True,
-    invites=True,
     presences=False,
     messages=True,
-    reactions=True, 
-    typing=True
+    reactions=True
 )
 
-bot = commands.Bot(command_prefix="경손아 ", intents=intents)
+bot = commands.Bot(command_prefix="경손아 ", intents=intents_list)
 bot.remove_command("help")
 
 bot.load_extension('Cogs.Events')
