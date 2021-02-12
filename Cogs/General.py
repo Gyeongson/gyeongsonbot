@@ -88,7 +88,7 @@ class GeneralCommand(commands.Cog):
         """
 
         if not args or len(args) <= 1:
-            await ctx.send(f"{usage} 가 올바른 명령어에요.")
+            await ctx.send(f"`경손아 랜덤 < 선택지1 > < 선택지2 > < 선택지3 > ...` 가 올바른 사용방법 이에요.")
         else:
             randomsl = random.choice(args)
             await ctx.send(f"{ctx.author.name} 님의 선택은 `{randomsl}` 에요!")
