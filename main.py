@@ -22,5 +22,6 @@ bot.remove_command("help")
 bot.load_extension('Cogs.Events')
 bot.load_extension('Cogs.General')
 bot.load_extension('Cogs.Moderation')
+bot.load_extension('jishaku')
 
 bot.run(config.token)

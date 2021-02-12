@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import aiohttp
+import random
 from lib import config
 
 class GeneralCommand(commands.Cog):
@@ -59,23 +60,6 @@ class GeneralCommand(commands.Cog):
                 embed = discord.Embed(description=f"현재 한강물의 온도는 `{data['temp']}도` 입니다.", color=0x428bff)
                 embed.set_footer(text=f"측정: {data['time']}")
                 await ctx.send(embed=embed)
-        
-    @commands.command(name="번역")
-    async def translate(self, ctx, *, arg):
-        """
-        경손아 번역 < 문장 또는 단어 >
-
-        
-        < 문장 또는 단어 > 를 영어로 자동번역합니다. 현재는 한국어만 지원됩니다.
-        """
-        async with aiohttp.ClientSession() as cs:
-            async with cs.get(f"https://api.winsub.kr/kakao/?key={config.winsubapi}&target=kr&input={arg}") as response:
-                data = await response.json(content_type=None)
-                embed = discord.Embed(title="카카오 번역기를 통해 번역한 결과에요!", color=0x428bff)
-                embed.add_field(name="번역문장", value=f"```{arg}```", inline=False)
-                embed.add_field(name="번역결과", value=f"```{data['result']['output']}```", inline=False)
-                embed.set_footer(text="번역 시스템은 https://api.winsub.kr/ 를 이용하였습니다.")
-                await ctx.send(embed=embed)
     
     @commands.command(name="아바타")
     async def profile(self, ctx, *, user: discord.User = None):
@@ -93,6 +77,21 @@ class GeneralCommand(commands.Cog):
         embed.set_image(url=user.avatar_url)
         embed.set_footer(text="기본 프로필일 경우 사진이 나오지 않아요.")
         await ctx.send(embed=embed)
+    
+    @commands.command(name="랜덤")
+    async def random(self, ctx, *, args):
+        """
+        경손아 랜덤 < 선택지1 > < 선택지2 > < 선택지3 > ...
 
+
+        선택지중 랜덤으로 선택합니다, 띄어쓰기를 기준으로 판단합니다.
+        """
+
+        if not args or len(args) <= 1:
+            await ctx.send(f"{usage} 가 올바른 명령어에요.")
+        else:
+            randomsl = random.choice(args)
+            await ctx.send(f"{ctx.author.name} 님의 선택은 `{randomsl}` 에요!")
+    
 def setup(bot):
     bot.add_cog(GeneralCommand(bot))    

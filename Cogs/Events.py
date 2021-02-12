@@ -57,18 +57,14 @@ class CommandsEvent(commands.Cog):
 
             elif isinstance(error, commands.ChannelNotReadable):
                 await ctx.send(f"채널을 봇이 읽거나 볼 수 없어요.")
-
-            elif isinstance(error, commands.RoleNotFound):
-                await ctx.send(f"역할을 찾을 수 없었어요.")
-            
-            elif isinstance(error, commands.NotOwner):
-                await ctx.send("명령어가 개발자 전용 커맨드에요.")
-            
-            elif isinstance(error, commands.MissingRole):
-                await ctx.send(f"명령어가 특정 역할 전용 커맨드에요.")
             else:
                 usage = ctx.command.help.split("\n")[0]
-                await ctx.send(f"`{usage}` 가 올바른 사용방법 이에요.")
+                await ctx.send(f"`{usage}` 가 올바른 사용방법 이에요.")   
+        
+        elif isinstance(error, commands.CommandNotFound):
+            await ctx.send("알 수 없는 커맨드에요, `경손아 도움` 으로 확인해보세요.")
+        elif isinstance(error, commands.CommandNotFound) or isinstance(error, commands.MissingRole) or isinstance(error, commands.NotOwner) or isinstance(error, commands.CheckFailure):
+            await ctx.send("이 커맨드는 귀하의 권한으로 사용할 수 없어요.")
         else:
             channel = self.bot.get_channel(config.errorterminal)
             await channel.send(f"```예기치 못한 오류가 발생했어요.\n\n오류가 발생한 명령어: {ctx.command.name}\n오류: {error}```")
