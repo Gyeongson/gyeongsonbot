@@ -32,7 +32,7 @@ class GeneralCommand(commands.Cog):
         try:
             await ctx.author.send(embed=embed)
         except:
-            await ctx.send(" - ")
+            await ctx.send("도움말을 DM 으로 전송하는것에 실패했어요, DM 이 열려있는지 확인해주세요.")
         else:
             await ctx.message.add_reaction("✅")
 
