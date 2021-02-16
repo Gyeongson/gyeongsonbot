@@ -163,6 +163,29 @@ class ModCommand(commands.Cog):
                     await channel.send(f"```이름변경 DM 전송에 실패했어요: {member}```")                           
         else:
             await ctx.send("해당 명령어는 DM 에서는 사용이 불가해요, 서버에서 사용해주세요.")
+    
+    @commands.command(name="채널설명")
+    @commands.has_guild_permissions(manage_channels=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    async def set_description(self, ctx, channel: discord.Channel, *, description: typing.Optional[str] = None):
+        """
+        경손아 채널설명 [ 설명 ]
+
+
+        명령어를 사용한 채널또는 지정한 채널의 설명을 바꿉니다. 설명이 빈 경우 설명을 삭제합니다.
+        """
+        
+        if channel is None:
+            channel = ctx.channel
+
+        if description is None:
+            description = None
+
+        if ctx.guild:
+            await channel.edit(topic=description)
+            await ctx.message.add_reaction("✅")
+        else:
+            await ctx.send("해당 명령어는 DM 에서는 사용이 불가해요, 서버에서 사용해주세요.")         
 
 def setup(bot):
     bot.add_cog(ModCommand(bot))
