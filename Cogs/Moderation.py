@@ -172,9 +172,8 @@ class ModCommand(commands.Cog):
         경손아 채널설명 [ 설명 ]
 
 
-        명령어를 사용한 채널의 설명을 바꿉니다. 설명이 빈 경우 설명을 삭제합니다.
+        명령어 사용 채널의 설명을 바꿉니다. 설명이 빈 경우 설명을 삭제합니다.
         """
-        
         if description is None:
             description = None
 
@@ -182,7 +181,26 @@ class ModCommand(commands.Cog):
             await ctx.channel.edit(topic=description)
             await ctx.message.add_reaction("✅")
         else:
-            await ctx.send("해당 명령어는 DM 에서는 사용이 불가해요, 서버에서 사용해주세요.")         
+            await ctx.send("해당 명령어는 DM 에서는 사용이 불가해요, 서버에서 사용해주세요.")      
+
+    @commands.command(name="슬로우모드")
+    @commands.has_guild_permissions(manage_channels=True)
+    @commands.bot_has_guild_permissions(manage_channels=True)
+    async def slowmode(self, ctx, *, num: int):
+        """
+        경손아 슬로우모드 [ 채널 ] < 초 >
+
+
+        명령어를 사용한 채널의 슬로우모드를 설정합니다.
+        """
+        if ctx.guild:
+            if num <= 21600:
+                await ctx.channel.edit(slowmode_delay=num)
+                await ctx.message.add_reaction("✅")
+            else:
+                await ctx.send("0 에서 21600 중 옳바른 숫자를 입력해주세요.")
+        else:
+            await ctx.send("해당 명령어는 DM 에서는 사용이 불가해요, 서버에서 사용해주세요.")
 
 def setup(bot):
     bot.add_cog(ModCommand(bot))

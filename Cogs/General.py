@@ -79,7 +79,7 @@ class GeneralCommand(commands.Cog):
         await ctx.send(embed=embed)
     
     @commands.command(name="랜덤")
-    async def random(self, ctx, *, args):
+    async def random(self, ctx, *args):
         """
         경손아 랜덤 < 선택지1 > < 선택지2 > < 선택지3 > ...
 
