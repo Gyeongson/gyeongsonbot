@@ -188,7 +188,7 @@ class ModCommand(commands.Cog):
     @commands.bot_has_guild_permissions(manage_channels=True)
     async def slowmode(self, ctx, *, num: int):
         """
-        경손아 슬로우모드 [ 채널 ] < 초 >
+        경손아 슬로우모드 < 초 >
 
 
         명령어를 사용한 채널의 슬로우모드를 설정합니다.
