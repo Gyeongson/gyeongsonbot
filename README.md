@@ -25,5 +25,14 @@
 
 이 프로젝트에서 Issues 또는 Pull Requests 로 오류를 제보 / 수정을 요청할 수 있어요.
 
-### 본 프로젝트는 아래 레포지스토리를 일부 또는 전체 참고하였습니다.
+### 본 프로젝트는 아래 레포지스토리 또는 유저의 의견(을)를 참고하였습니다.
+
+#### Cogs.Events / 권한에 관한 부분
 [Miya by. LRACT](https://github.com/LRACT/Miya)
+
+#### Cogs.General / 도움말
+[Miya by. LRACT](https://github.com/LRACT/Miya)
+
+[도움말 의견 제공](https://github.com/CwhiteKJ)
+
+### 본 프로젝트는 개발용 툴 [Jishaku](https://github.com/Gorialis/jishaku) 를 사용중입니다.
