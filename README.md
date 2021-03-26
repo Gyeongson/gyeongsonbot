@@ -24,3 +24,6 @@
 ### 경손봇 오류를 발견했어요, 어디로 제보해야하죠?
 
 이 프로젝트에서 Issues 또는 Pull Requests 로 오류를 제보 / 수정을 요청할 수 있어요.
+
+### 본 프로젝트는 아래 레포지스토리를 일부 또는 전체 참고하였습니다.
+[Miya by. LRACT](https://github.com/LRACT/Miya)
